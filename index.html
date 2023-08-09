@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Friendship Day Surprise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: transparent;
+        }
+
+        /* Preloader Effect */
+
+        .loader {
+            width: 100vw;
+            height: 100vh;
+            background-color: transparent;
+            position: absolute;
+            min-width: 0;
+            min-height: 0;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .bg>div {
+            width: 160px;
+            height: 160px;
+            position: absolute;
+            left: 0;
+            margin: auto;
+            right: 0;
+            top: 0;
+            background-color: #8a7b7b7e;
+            bottom: 0;
+            border-radius: 20px;
+        }
+
+        .bg>div::after {
+            content: "";
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            border: 8px solid;
+            margin: auto;
+            left: 0;
+            top: 0;
+            right: 0;
+            border-radius: 50%;
+            bottom: 0;
+            border-top-color: transparent;
+            animation: sec 1s infinite linear;
+        }
+
+        @keyframes sec {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fst {
+            100% {
+                transform: rotate(-360deg);
+            }
+        }
+
+        .bg>div::before {
+            content: "";
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            border: 8px solid;
+            margin: auto;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            border-right-color: transparent;
+            border-radius: 50%;
+            animation: fst 2s infinite linear;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+            background-color: #fff;
+            padding: 20px 20px 0 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            display: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #ff6b6b;
+        }
+
+        button {
+            background-color: #ff6b6b;
+            color: #fff;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #ff5050;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .surpriseText {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        img {
+            width: 200px;
+        }
+
+        #copy {
+            max-width: 400px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            min-height: 0;
+            min-width: 0;
+        }
+
+        #copy>span {
+            font-size: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PreLoader -->
+
+    <div class="bg loader">
+        <div></div>
+    </div>
+
+    <!-- Main container -->
+
+    <div class="container">
+        <h1>Happy Friendship Day!</h1>
+        <p id="after-hidden">Click the button below for a special surprise.</p>
+        <button id="surpriseButton">Surprise Me!</button>
+        <div id="surpriseContainer" class="hidden">
+            <p class="surpriseText">You are an amazing friend!</p>
+            <img src="https://www.icegif.com/wp-content/uploads/feliz-sabado-icegif-12.gif" alt="Confetti">
+        </div>
+        <div id="copy">
+            <span>&copy; SameemAhmad & Hasan</span>
+        </div>
+    </div>
+
+    <!--  jscript  -->
+
+    <script>
+
+        // Create variables to store classess or id's
+
+        const loader = document.querySelector(".loader");
+        const surpriseContainer = document.getElementById('surpriseContainer');
+        const surpriseButton = document.querySelector("#surpriseButton");
+        const hidden = document.querySelector("#after-hidden");
+        
+        // fade out preloader div
+
+        window.addEventListener("load", function () {
+            jQuery(".loader").fadeOut(2000);
+        });
+        
+        setTimeout(function (){
+            var container = document.querySelector(".container");
+            container.style.display = "block";
+        }, 2500);
+
+        document.getElementById('surpriseButton').addEventListener('click', function () {
+            surpriseContainer.classList.remove("hidden");
+            surpriseButton.style.display = "none";
+            hidden.style.display = "none";
+
+            // Add some animation or effects here if you want!
+
+            setTimeout(function () {
+                surpriseContainer.innerHTML += '<p>Thank you for being an awesome friend!</p>';
+            }, 3000); // Display an additional message after 3 seconds
+        });
+
+        function playAudio() {
+            let audio = new Audio("https://drive.google.com/uc?export=download&id=1-KPvlQ9Wgjdvs9g_SjJWquy_8qmzkw7l");
+            audio.play();
+        }
+        surpriseButton.addEventListener('click', playAudio);
+        
+    
+  function refreshPage() {
+    location.reload();
+  }
+
+  window.addEventListener('online', refreshPage);
+
+
+    </script>
+</body>
+
+</html>
